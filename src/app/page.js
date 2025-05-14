@@ -79,12 +79,16 @@ export default function Home() {
           <div className={styles.logoutSection}>
             <button 
               onClick={() => {
-                localStorage.removeItem('user');
-                window.location.href = '/login';
+                if (currentUser) {
+                  localStorage.removeItem('user');
+                  window.location.href = '/login';
+                } else {
+                  window.location.href = '/login';
+                }
               }} 
               className={styles.logoutButton}
             >
-              <FiLogOut size={18} /> Cerrar sesión
+              <FiLogOut size={18} /> {currentUser ? 'Cerrar sesión' : 'Iniciar sesión'}
             </button>
           </div>
         </nav>
